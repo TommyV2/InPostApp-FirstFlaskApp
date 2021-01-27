@@ -1,0 +1,8 @@
+flask
+authlib
+fpdf
+redis
+pyOpenSSL
+flask-jwt-extended
+requests
+

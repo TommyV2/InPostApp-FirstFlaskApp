@@ -1,0 +1,47 @@
+version: "3"
+services:
+  web-login:
+    build:
+      context: .
+      dockerfile: ./Docker/login/Dockerfile
+    ports: ["8080:8880"]
+    volumes: [./POSTawa_app:/POSTawa_app]
+    environment:
+      FLASK_ENV: development
+      LOGIN_JWT_SECRET: $LOGIN_JWT_SECRET
+      CLIENT_AUTH_SECRET: $CLIENT_AUTH_SECRET
+      CLIENT_OAUTH_CLIENT_SECRET: $CLIENT_OAUTH_CLIENT_SECRET
+  web-files:
+    build:
+      context: .
+      dockerfile: ./Docker/files/Dockerfile
+    ports: ["8081:8881"]
+    volumes: [./POSTawa_app:/POSTawa_app]
+    environment:
+      FLASK_ENV: development
+      LOGIN_JWT_SECRET: $LOGIN_JWT_SECRET
+  web-locker:
+    build:
+      context: .
+      dockerfile: ./Docker/locker/Dockerfile
+    ports: ["8082:8882"]
+    volumes: [./POSTawa_app:/POSTawa_app]
+    environment:
+      FLASK_ENV: development
+      LOGIN_JWT_SECRET: $LOGIN_JWT_SECRET
+  web-courier:
+    build:
+      context: .
+      dockerfile: ./Docker/courier/Dockerfile
+    ports: ["8083:8883"]
+    volumes: [./POSTawa_app:/POSTawa_app]
+    environment:
+      FLASK_ENV: development
+      LOGIN_JWT_SECRET: $LOGIN_JWT_SECRET
+      COURIER_AUTH_SECRET: $COURIER_AUTH_SECRET
+      COURIER_OAUTH_CLIENT_SECRET: $COURIER_OAUTH_CLIENT_SECRET
+  redis-db:
+    image: "redis:alpine"
+    
+    
+   
